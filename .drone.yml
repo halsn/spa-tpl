@@ -1,0 +1,19 @@
+pipeline:
+  build:
+    image: node
+    commands:
+      - echo 'start build'
+      - npm i && npm run build
+      - echo 'finished'
+  test:
+    image: node
+    commands:
+      - echo 'start test'
+      - npm test
+      - echo 'finished'
+  sonar:
+    image: halsn/sonar-scanner
+    commands:
+      - echo 'sonar-scanner start'
+      - sonar-scanner
+      - echo 'finished'

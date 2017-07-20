@@ -1,1 +1,1 @@
-### React boilerplate
+### SPA stack
