@@ -1,9 +1,9 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'dva'
-import { Button } from '../components'
+import { Button } from '../../components'
 import { Helmet } from 'react-helmet'
-import './app.less'
+import './index.less'
 
 const App = ({ children, dispatch, app, loading }) => {
   return (
