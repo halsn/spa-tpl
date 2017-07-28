@@ -1,5 +1,11 @@
+const { db } = require('../utils')
+const User = db.model('User')
+
 module.exports.get = (req, res) => {
-  return res.json({ success: true, name: 'foo', list: [1, 2, 3, 4, 5] })
+  User.find()
+    .then((users) => {
+      return res.json({ success: true, users })
+    })
 }
 
 module.exports.del = (req, res) => {

@@ -3,7 +3,7 @@ version: "2"
 services:
 
   web:
-    build: ./docker/web
+    build: ./web
     container_name: web
     restart: unless-stopped
     ports:
@@ -14,10 +14,12 @@ services:
       - db
     environment:
       - FOO=bar
+  api:
+    build: ./api
 
   db:
     image: mongodb
-    container_name: web-mongodb
+    container_name: web_mongodb
     restart: unless-stopped
     volumes:
       - ./docker/db:/data/db

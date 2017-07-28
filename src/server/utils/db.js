@@ -1,23 +1,19 @@
 const mongoose = require('mongoose')
-const path = require('path')
 const uniqueValidater = require('mongoose-unique-validator')
-const fs = require('fs')
+const Promise = require('bluebird')
 
 const { logger } = require('./')
 const { db } = require('../config')
+const models = require('../models')
 
 const { URI } = db
 
+mongoose.Promise = Promise
 mongoose.connect(URI, () => {
-  logger.info()
+  logger.info('DB connected')
 })
 
-const schemaFiles = fs.readdirSync(path.resolve('shema'))
-// 加载model以及注册插件
-modelFiles.forEach(file => {
-  const schema = require(path.resolve(file))
-  schema.plugin(uniqueValidater)
-})
+Object.keys(models).forEach(model => models[model].plugin(uniqueValidater))
 
 module.exports = mongoose
 
