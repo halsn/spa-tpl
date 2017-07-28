@@ -5,10 +5,10 @@ const compression = require('compression')
 const path = require('path')
 
 const { logger } = require('./utils')
-const { web, api:apiServer } = require('./config')
-
+const { web, api: apiServer } = require('./config')
 const app = express()
-const { port } = web
+const { port, domain } = web
+const { port: apiPort, domain: apiDomain } = apiServer
 
 app.use(compression())
 
@@ -19,11 +19,11 @@ logger.stream = {
 }
 
 app.use(morgan('combined', { stream: logger.stream }))
-app.use(express.static(path.resolve('./public')))
-app.use('/api', proxy({ target: 'http://apiserver:6000', changeOrigin: true }))
+app.use(express.static(path.resolve('./dist')))
+app.use('/api', proxy({ target: `http://${apiDomain}:${apiPort}`, changeOrigin: true }))
 
-app.get('/', (req, res) => {
-  res.sendFile('/index.html')
+app.get('*', (req, res) => {
+  res.sendFile(path.resolve('./dist/index.html'))
 })
 
 // global error handler
@@ -42,7 +42,7 @@ app.use((error, req, res, next) => {
 })
 
 app.listen(port, () => {
-  logger.info(`Web server is running on http://localhost:${port}`)
+  logger.info(`Web server is running on http://${domain}:${port}`)
 })
 
 process.on('unhandledRejection', (reason) => {

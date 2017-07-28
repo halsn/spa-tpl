@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "nodemon": "nodemon src/server/app.js -w src/server -w package.json -V",
+    "nodemon": "nodemon src/server/api.js -w src/server -w package.json -V",
     "roadhog": "roadhog server",
     "dev": "concurrently -p \"[{name}]\" -n \"nodemon,roadhog\" -c \"bgBlue.bold,bgGreen.bold\" \"npm run nodemon\" \"npm run roadhog\"",
     "test": "jest",

@@ -1,10 +1,9 @@
 const mainRouter = require('express').Router()
+const User = require('./user.js')
 
 mainRouter
   .route('/user')
-  .get((req, res) => {
-    return res.json({ user: 'foo' })
-  })
+  .get(User.get)
 
 module.exports = {
   mainRouter
