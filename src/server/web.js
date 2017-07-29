@@ -5,7 +5,7 @@ const compression = require('compression')
 const path = require('path')
 
 const { logger } = require('./utils')
-const { web } = require('./config')
+const { web, api:apiServer } = require('./config')
 
 const app = express()
 const { port } = web
@@ -20,7 +20,7 @@ logger.stream = {
 
 app.use(morgan('combined', { stream: logger.stream }))
 app.use(express.static(path.resolve('./public')))
-app.use('/api', proxy({ target: 'http://apiserver:5001', changeOrigin: true }))
+app.use('/api', proxy({ target: 'http://apiserver:6000', changeOrigin: true }))
 
 app.get('/', (req, res) => {
   res.sendFile('/index.html')

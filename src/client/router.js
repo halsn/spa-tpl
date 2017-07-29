@@ -17,16 +17,12 @@ const Routers = function ({ history, app }) {
       path: '/',
       component: App,
       getIndexRoute (nextState, cb) {
-        System.import('./routes/user')
-          .then(module => {
-            console.log(module)
-          })
         NProgress.start()
         require.ensure([], require => {
-          registerModel(app, require('./models/user.js'))
+          registerModel(app, require('./models/app.js'))
           NProgress.done()
-          cb(null, { component: require('./routes/user') })
-        }, 'user')
+          cb(null, { component: require('./routes/app') })
+        }, 'app')
       },
       childRoutes: [
         {
