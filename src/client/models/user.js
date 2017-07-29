@@ -33,7 +33,6 @@ export default {
       }
     },
     queryFail (state, { data }) {
-      console.log('fail to get data')
       return {
         ...state
       }

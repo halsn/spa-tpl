@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "nodemon": "nodemon src/server/app.js -w src/server -w package.json -V",
+    "nodemon": "nodemon src/server/api.js -w src/server -w package.json -V",
     "roadhog": "roadhog server",
     "dev": "concurrently -p \"[{name}]\" -n \"nodemon,roadhog\" -c \"bgBlue.bold,bgGreen.bold\" \"npm run nodemon\" \"npm run roadhog\"",
     "test": "jest",
@@ -40,8 +40,13 @@
   "dependencies": {
     "axios": "^0.16.2",
     "bluebird": "^3.5.0",
+    "body-parser": "^1.17.2",
+    "compression": "^1.7.0",
     "dva": "^1.2.1",
     "dva-loading": "^0.2.1",
+    "express": "^4.15.3",
+    "mongoose": "^4.11.4",
+    "mongoose-unique-validator": "^1.0.5",
     "morgan": "^1.8.2",
     "nprogress": "^0.2.0",
     "react": "^15.6.1",

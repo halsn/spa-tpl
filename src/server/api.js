@@ -9,7 +9,7 @@ const { api } = require('./config')
 const { mainRouter } = require('./routes')
 
 const app = express()
-const { port } = api
+const { port, domain } = api
 
 app.use(compression())
 
@@ -43,7 +43,7 @@ app.use((error, req, res, next) => {
 })
 
 app.listen(port, () => {
-  logger.info(`API server is running on http://localhost:${port}`)
+  logger.info(`API server is running on http://${domain}:${port}`)
 })
 
 process.on('unhandledRejection', (reason) => {

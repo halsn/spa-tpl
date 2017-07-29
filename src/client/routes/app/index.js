@@ -1,9 +1,14 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'dva'
+<<<<<<< HEAD:src/client/routes/app/index.js
 import { Button } from '../../components'
 import { Helmet } from 'react-helmet'
 import './index.less'
+=======
+import { Helmet } from 'react-helmet'
+import styles from './index.less'
+>>>>>>> e8c3cc888a12e101c258eab989ce5eaf020c61c8:src/client/routes/app/index.js
 
 const App = ({ children, dispatch, app, loading }) => {
   return (
@@ -12,7 +17,7 @@ const App = ({ children, dispatch, app, loading }) => {
         <title>Site</title>
         <meta name='viewport' content='width=device-width, initial-scale=1.0' />
       </Helmet>
-      <Button loading={loading.global} title='Click me' />
+      <div className={styles.main}>{children}</div>
     </div>
   )
 }
