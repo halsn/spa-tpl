@@ -19,12 +19,23 @@ const Routers = function ({ history, app }) {
       getIndexRoute (nextState, cb) {
         NProgress.start()
         require.ensure([], require => {
-          registerModel(app, require('./models/app.js'))
+          registerModel(app, require('./models/home.js'))
           NProgress.done()
-          cb(null, { component: require('./routes/app') })
-        }, 'app')
+          cb(null, { component: require('./routes/home') })
+        }, 'home')
       },
       childRoutes: [
+        {
+          path: 'home',
+          getComponent (nextState, cb) {
+            NProgress.start()
+            require.ensure([], require => {
+              registerModel(app, require('./models/home.js'))
+              NProgress.done()
+              cb(null, require('./routes/home'))
+            }, 'home')
+          }
+        },
         {
           path: 'user',
           getComponent (nextState, cb) {

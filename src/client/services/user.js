@@ -10,6 +10,17 @@ function getUser (params) {
   })
 }
 
+function addToUsers (data) {
+  return request('/api/user', {
+    method: 'post',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    data
+  })
+}
+
 export default {
-  getUser
+  getUser,
+  addToUsers
 }

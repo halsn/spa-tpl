@@ -1,11 +1,15 @@
-const { db } = require('../utils')
+const { db, logger } = require('../utils')
+const { getError } = db
 const User = db.model('User')
 
-module.exports.get = (req, res) => {
-  User.find()
-    .then((users) => {
-      return res.json({ success: true, users })
-    })
+module.exports.get = async (req, res) => {
+  try {
+    const users = await User.find().exec()
+    return res.json({ success: true, userList: users })
+  } catch (e) {
+    logger.error(e)
+    return res.json({ error: getError(e) })
+  }
 }
 
 module.exports.del = (req, res) => {
@@ -16,6 +20,22 @@ module.exports.put = (req, res) => {
   return res.json({ success: 'put' })
 }
 
-module.exports.post = (req, res) => {
-  return res.json({ success: 'post' })
+function sleep (sec) {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      return resolve()
+    }, sec * 1000)
+  })
+}
+
+module.exports.post = async (req, res) => {
+  const data = req.body
+  try {
+    await sleep(1)
+    await (new User(data)).save()
+    return res.json({ success: true })
+  } catch (e) {
+    logger.error(e)
+    return res.json({ error: getError(e) })
+  }
 }

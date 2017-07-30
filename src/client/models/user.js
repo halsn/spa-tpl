@@ -1,6 +1,5 @@
 import { User } from '../services'
-
-const { getUser } = User
+const { getUser, addToUsers } = User
 
 export default {
   namespace: 'user',
@@ -10,8 +9,7 @@ export default {
     }
   },
   state: {
-    name: '',
-    list: []
+    userList: []
   },
   effects: {
     * query ({ payload }, { call, put }) {
@@ -21,15 +19,23 @@ export default {
       } else {
         yield put({ type: 'queryFail', data })
       }
+    },
+    * post ({ payload }, { call, put }) {
+      const { data } = yield call(addToUsers, payload)
+      if (data.success) {
+        console.log('添加成功')
+        yield put({ type: 'query' })
+      } else {
+        console.log(data.error)
+      }
     }
   },
   reducers: {
     querySuccess (state, { data }) {
-      const { name, list } = data
+      const { userList } = data
       return {
         ...state,
-        name,
-        list
+        userList
       }
     },
     queryFail (state, { data }) {

@@ -2,7 +2,7 @@ const mongoose = require('mongoose')
 const uniqueValidater = require('mongoose-unique-validator')
 const Promise = require('bluebird')
 
-const { logger } = require('./')
+const logger = require('./logger.js')
 const { db } = require('../config')
 const models = require('../models')
 

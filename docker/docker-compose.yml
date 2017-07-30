@@ -7,7 +7,7 @@ services:
     container_name: web
     restart: unless-stopped
     ports:
-      - "8000:8000"
+      - "5000:5000"
     depends_on:
       - db
     links:
@@ -16,6 +16,10 @@ services:
       - FOO=bar
   api:
     build: ./api
+    container_name: api
+    restart: unless-stopped
+    ports:
+      - "6000:6000"
 
   db:
     image: mongodb

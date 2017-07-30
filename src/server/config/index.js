@@ -8,6 +8,6 @@ module.exports = {
     port: 6000
   },
   db: {
-    URI: ''
+    URI: 'mongodb://localhost:27017'
   }
 }

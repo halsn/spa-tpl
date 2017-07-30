@@ -18,6 +18,7 @@ const loggerConfig = {
     Console: {
       level: 'debug',
       handleExceptions: true,
+      humanReadableUnhandledException: true,
       json: false,
       colorize: true,
       timestamp: tsFormat

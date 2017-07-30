@@ -1,9 +1,11 @@
-FROM node:7.10.0-alpine
+FROM node:8.0.0-alpine
 MAINTAINER Halsn <xuhalsn@gmail.com>
 
-ENV FOO="bar"
+EXPOSE 5000
 
-EXPOSE 8000
+RUN apk update && \
+    apk upgrade && \
+    apk add --no-cache git
 
 WORKDIR /app
 
@@ -13,4 +15,4 @@ VOLUME /app/public/media
 
 RUN npm i && npm build
 
-CMD npm start
+CMD node src/server/web.js

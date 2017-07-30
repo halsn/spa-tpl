@@ -15,12 +15,12 @@ export default {
       "iOS >= 8", "Android >= 4"
     ]
   },
-  // "proxy": {
-    // "/api": {
-      // "target": "http://localhost:6000",
-      // "changeOrigin": true
-    // }
-  // },
+  "proxy": {
+    "/api": {
+      "target": "http://localhost:6000",
+      "changeOrigin": true
+    }
+  },
   "extraBabelPlugins": [
     "transform-runtime",
     // ["import", { "libraryName": "antd", "style": true }]
