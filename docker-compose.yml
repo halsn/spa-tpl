@@ -1,0 +1,37 @@
+version: "2"
+
+services:
+
+  web:
+    build: ./docker/web
+    container_name: web
+    restart: unless-stopped
+    ports:
+      - "5000:5000"
+    environment:
+      - API_HOST=api
+      - API_PORT=6000
+    # depends_on:
+      # - api
+    # links:
+      # - api
+
+  # api:
+    # build: ./docker/api
+    # container_name: api
+    # restart: unless-stopped
+    # ports:
+      # - "6000"
+    # environment:
+      # - DB_URI=mongodb://db:27017/spa
+    # depends_on:
+      # - db
+    # links:
+      # - db
+
+  # db:
+    # image: mongo
+    # container_name: mongodb
+    # restart: unless-stopped
+    # volumes:
+      # - ./docker/db:/data/db

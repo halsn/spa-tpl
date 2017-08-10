@@ -3,16 +3,14 @@ MAINTAINER Halsn <xuhalsn@gmail.com>
 
 EXPOSE 5000
 
-RUN apk update && \
-    apk upgrade && \
-    apk add --no-cache git
+# RUN apk add --no-cache git
 
 WORKDIR /app
 
-ADD . ./
+COPY . package.json
 
 VOLUME /app/public/media
 
-RUN npm i && npm build
+RUN npm i && npm run build
 
 CMD node src/server/web.js
