@@ -46,8 +46,4 @@ app.listen(port, () => {
   logger.info(`API server is running on http://${domain}:${port}`)
 })
 
-process.on('unhandledRejection', (reason) => {
-  logger.error('Reason: ', reason)
-})
-
 module.exports = app

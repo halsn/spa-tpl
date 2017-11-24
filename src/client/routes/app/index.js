@@ -12,6 +12,7 @@ const App = ({ children, dispatch, app, loading }) => {
         <meta name='viewport' content='width=device-width, initial-scale=1.0' />
       </Helmet>
       <div className={styles.app}>
+        <p>all page have this message</p>
         {children}
       </div>
     </div>

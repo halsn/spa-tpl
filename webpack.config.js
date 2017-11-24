@@ -25,10 +25,10 @@ module.exports = (webpackConfig) => {
 
   // Alias
   // webpackConfig.resolve.alias = {
-    // components: `${__dirname}/src/components`,
-    // utils: `${__dirname}/src/utils`,
-    // config: `${__dirname}/src/utils/config`,
-    // enums: `${__dirname}/src/utils/enums`
+  //   components: `${__dirname}/src/components`,
+  //   utils: `${__dirname}/src/utils`,
+  //   config: `${__dirname}/src/utils/config`,
+  //   enums: `${__dirname}/src/utils/enums`
   // }
 
   return webpackConfig

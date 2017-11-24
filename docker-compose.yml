@@ -1,37 +1,41 @@
-version: "2"
+version: '3.3'    
 
 services:
 
   web:
-    build: ./docker/web
-    container_name: web
+    build:
+      context: ./
+      dockerfile: ./docker/web-server/Dockerfile
+    container_name: spa-web
     restart: unless-stopped
     ports:
       - "5000:5000"
     environment:
       - API_HOST=api
       - API_PORT=6000
-    # depends_on:
-      # - api
-    # links:
-      # - api
+    depends_on:
+      - api
+    links:
+      - api
 
-  # api:
-    # build: ./docker/api
-    # container_name: api
-    # restart: unless-stopped
-    # ports:
-      # - "6000"
-    # environment:
-      # - DB_URI=mongodb://db:27017/spa
-    # depends_on:
-      # - db
-    # links:
-      # - db
+  api:
+    build:
+      context: ./
+      dockerfile: ./docker/api-server/Dockerfile
+    container_name: spa-api
+    restart: unless-stopped
+    ports:
+      - "6000"
+    environment:
+      - DB_URI=mongodb://db:27017/spa
+    depends_on:
+      - db
+    links:
+      - db
 
-  # db:
-    # image: mongo
-    # container_name: mongodb
-    # restart: unless-stopped
-    # volumes:
-      # - ./docker/db:/data/db
+  db:
+    image: mongo
+    container_name: spa-mongodb
+    restart: unless-stopped
+    volumes:
+      - ./docker/db:/data/db

@@ -44,3 +44,4 @@ config/*
 
 dist
 public/build
+data

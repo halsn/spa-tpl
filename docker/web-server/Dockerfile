@@ -1,4 +1,4 @@
-FROM node:8.0.0-alpine
+FROM node:8.9.0-alpine
 MAINTAINER Halsn <xuhalsn@gmail.com>
 
 EXPOSE 5000
@@ -7,10 +7,10 @@ EXPOSE 5000
 
 WORKDIR /app
 
-COPY . package.json
+ADD . ./
 
 VOLUME /app/public/media
 
 RUN npm i && npm run build
 
-CMD node src/server/web.js
+CMD node /app/src/server/web.js
