@@ -38,4 +38,4 @@ services:
     container_name: spa-mongodb
     restart: unless-stopped
     volumes:
-      - ./docker/db:/data/db
+      - /data/docker/spa-tpl/db:/data/db

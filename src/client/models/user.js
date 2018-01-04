@@ -23,10 +23,10 @@ export default {
     * post ({ payload }, { call, put }) {
       const { data } = yield call(addToUsers, payload)
       if (data.success) {
-        console.log('添加成功')
+        window.alert('添加成功')
         yield put({ type: 'query' })
       } else {
-        console.log(data.error)
+        window.alert(data.error)
       }
     }
   },

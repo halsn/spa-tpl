@@ -31,7 +31,7 @@ function sleep (sec) {
 module.exports.post = async (req, res) => {
   const data = req.body
   try {
-    await sleep(1)
+    await sleep(Math.floor(Math.random() * 3))
     await (new User(data)).save()
     return res.json({ success: true })
   } catch (e) {

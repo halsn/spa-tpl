@@ -13,6 +13,7 @@ const App = ({ children, dispatch, app, loading }) => {
       </Helmet>
       <div className={styles.app}>
         <p>all page have this message</p>
+        <p> fuck u !!!</p>
         {children}
       </div>
     </div>
